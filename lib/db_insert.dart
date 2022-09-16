@@ -8,8 +8,10 @@ import 'package:http/http.dart' as http;
 Future<Album> createAlbum(
     String title, String author, String image, String text) async {
   final response = await http.post(
-    Uri.parse('http://192.168.0.144/cross_plat_sharing/insert.php'),
-    // http://192.168.0.140/cross_plat_sharing/insert.php'),
+    Uri.parse('http://192.168.0.146/cross_plat_sharing/insert.php'),
+    // 'http://10.0.0.233/cross_plat_sharing/insert.php'),
+    //
+    //
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -135,7 +137,12 @@ class _DbInsertPageState extends State<DbInsertPage> {
         // }
 
         else {
-          return const Text('post submitted');
+          _titleController.clear();
+          _textController.clear();
+          _imageController.clear();
+          _authorController.clear();
+          return buildColumn();
+          // return const Text('post submitted');
         }
 
         // return const CircularProgressIndicator();

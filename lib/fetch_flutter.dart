@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<Album>> fetchAlbum() async {
-  var url = 'http://192.168.0.144/cross_plat_sharing/flutter_share.php';
+  var url = 'http://192.168.0.146/cross_plat_sharing/flutter_share.php';
 
-  //   "http://10.0.0.233/cross_plat_sharing/flutter_share.php";
+  //  "http://10.0.0.233/cross_plat_sharing/flutter_share.php";
 
+  //
+  //
   final response = await http.post(Uri.parse(url));
   // print(response.body);
   // return compute(parseAlbums, response.body);
@@ -135,17 +137,19 @@ class _FetchFlutterPageState extends State<FetchFlutterPage> {
                           },
                         ),
                       );
+                    }
+                    if (snapshot.hasData) {
+                      return Text('${snapshot.data}');
                     } else if (snapshot.hasError) {
                       return Text('${snapshot.error} WHAHWHAHA');
                     }
-
-                    // By default, show a loading spinner.
-                    return const CircularProgressIndicator();
+                    return Text('Hey There');
                   },
                 ),
               )
             ],
           ),
-        ));
+        )
+        );
   }
 }
